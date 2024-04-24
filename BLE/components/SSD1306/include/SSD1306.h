@@ -70,7 +70,7 @@
 #define READ_BIT I2C_MASTER_READ                /*!< I2C master read */
 
 void ssd1306_init();
-void task_ssd1306_display_text(const void *arg_text);
+void task_ssd1306_display_text(const void *arg_text, uint8_t page);
 void task_ssd1306_display_clear();
 void init();
 #endif /* MAIN_SSD1366_H_ */

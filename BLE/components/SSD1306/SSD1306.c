@@ -38,14 +38,14 @@ void ssd1306_init()
 	i2c_cmd_link_delete(cmd);
 }
 
-void task_ssd1306_display_text(const void *arg_text)
+void task_ssd1306_display_text(const void *arg_text, uint8_t page)
 {
 	char *text = (char *)arg_text;
 	uint8_t text_len = strlen(text);
 
 	i2c_cmd_handle_t cmd;
 
-	uint8_t cur_page = 0;
+	uint8_t cur_page = page;
 
 	cmd = i2c_cmd_link_create();
 	i2c_master_start(cmd);

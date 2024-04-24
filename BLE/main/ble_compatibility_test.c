@@ -61,6 +61,8 @@
 #define ADV_CONFIG_FLAG             (1 << 0)
 #define SCAN_RSP_CONFIG_FLAG        (1 << 1)
 
+static uint8_t PAGE_LCD =  0;
+
 static uint8_t adv_config_done       = 0;
 
 uint16_t gatt_db_handle_table[HRS_IDX_NB];
@@ -553,18 +555,25 @@ static void gatts_profile_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_
                 }
 
                 if(gatt_db_handle_table[IDX_CHAR_VAL_B] == param->write.handle) {
-                    uint8_t write_data[] = "21520684";
-                    uint8_t write_data2[] = "21520697";
-                    uint8_t write_data3[] = "21520763";
-                    if(memcmp(write_data, param->write.value, param->write.len) == 0){
-                    task_ssd1306_display_text("21520684");
-                    }
-                    else if(memcmp(write_data2, param->write.value, param->write.len) == 0){
-                    task_ssd1306_display_text("\n21520697");
-                    }
-                    else if(memcmp(write_data3, param->write.value, param->write.len) == 0){
-                    task_ssd1306_display_text("\n\n21520763\n");
-                    }
+                    // uint8_t write_data[] = "21520684";
+                    // uint8_t write_data2[] = "21520697";
+                    // uint8_t write_data3[] = "21520763";
+
+                    // printf("%s",param->write.value);
+                    task_ssd1306_display_text(param->write.value,PAGE_LCD);
+                    PAGE_LCD++;
+                    if(PAGE_LCD==8)
+                        PAGE_LCD = 0;
+                        
+                    // if(memcmp(write_data, param->write.value, param->write.len) == 0){
+                    // task_ssd1306_display_text("21520684");
+                    // }
+                    // else if(memcmp(write_data2, param->write.value, param->write.len) == 0){
+                    // task_ssd1306_display_text("\n21520697");
+                    // }
+                    // else if(memcmp(write_data3, param->write.value, param->write.len) == 0){
+                    // task_ssd1306_display_text("\n\n21520763\n");
+                    // }
                     ESP_LOGI(EXAMPLE_TAG, "(3)***** ID write success ***** \n");
                 }
 
