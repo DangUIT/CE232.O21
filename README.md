@@ -4,4 +4,6 @@
   - Video demo: https://youtube.com/shorts/R12EX7A1IFc?feature=share
 # Lab 3: BLE
   - Video demo: https://youtube.com/shorts/SSuQrZpqBPo?feature=share
+# Lab 3: MQTT-BLE
+  - Video demo: https://youtu.be/4KVciXOP8pk
 
